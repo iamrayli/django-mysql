@@ -1,2 +1,5 @@
 # django-mysql
 数据库大作业，django+pymysql实现
+该项目是在本机python虚拟环境下构建的，需要安装django和pymysql
+对应连接数据库的相关信息也要改成自己的
+对于测试数据可以自行通过admin后台添加方便测试
