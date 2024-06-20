@@ -1,0 +1,176 @@
+<!--传入参数：-->
+<!--
+{账户余额：balance;
+以及149行的url执行充值操作，即对数据的更新}
+-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网吧用户充值</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-container label {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0 5px;
+            font-size: 0.85em;
+            transition: top 0.3s, left 0.3s;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+
+        .input-container input:focus {
+            border-color: #5cb85c;
+        }
+
+        .input-container input:focus + label,
+        .input-container input:valid + label {
+            top: -10px;
+            left: 0;
+        }
+
+        .balance-card {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #5cb85c;
+            border-radius: 5px;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+        a{
+            width: 50%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert('{{ message.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+<div class="container">
+    <h1>网吧用户充值</h1>
+
+    <!-- 充值金额输入框 -->
+    <div class="input-container">
+        <label for="rechargeAmount"></label>
+        <input type="number" id="rechargeAmount" placeholder="请输入充值金额" min="1" required>
+    </div>
+
+    <!-- 充值方式选择 -->
+    <div class="payment-method">
+        <label><input type="radio" name="payment" value="cash" checked> 现金</label>
+        <label><input type="radio" name="payment" value="wechatPay"> 微信支付</label>
+        <label><input type="radio" name="payment" value="aliPay"> 支付宝</label>
+    </div>
+
+    <!-- 账户余额显示卡片 -->
+    <div class="balance-card">
+        <h2>账户余额:</h2>
+        <p id="balance">￥{{balance}}</p> <!-- 假设初始余额为0.00 -->
+    </div>
+
+    <!-- 充值按钮 -->
+    <button id="rechargeBtn">充值</button>
+    <a href="/apps/userhome">返回</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const rechargeBtn = document.getElementById('rechargeBtn');
+
+        rechargeBtn.addEventListener('click', function () {
+            const rechargeAmount = parseFloat(document.getElementById('rechargeAmount').value);
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            if (!isNaN(rechargeAmount) && rechargeAmount > 0) {
+                // 构造查询字符串
+                const queryParams = new URLSearchParams({
+                    amount: rechargeAmount,
+                    method: paymentMethod
+                }).toString();
+
+                // 执行页面跳转
+                window.location.href = '/apps/recharging?' + queryParams;
+            } else {
+                alert('请输入有效的充值金额');
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

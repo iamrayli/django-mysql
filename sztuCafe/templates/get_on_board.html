@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户上机</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 48px;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049; /* 悬停时颜色变深 */
+            transform: translateY(-2px); /* 轻微上移 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 增加阴影 */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 24px;
+            padding: 18px 20px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-size: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1e90ff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <script>
+        function confirmAction(event, url) {
+            event.preventDefault();
+            if (confirm('您确定要上机吗？')) {
+                window.location.href = url;
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>用户上机</h1>
+<table>
+    <thead>
+    <tr>
+        <th>机号</th>
+        <th>区号</th>
+        <th>每小时单价</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for com in comp %}
+        <tr>
+            <td>{{ com.comp_id }}</td>
+            <td>{{ com.area_id.area_id }}</td>
+            <td>{{ com.area_id.price_ph }}</td>
+            <td>
+                <a href="/apps/getOnBoard/{{ com.comp_id }}">上机</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

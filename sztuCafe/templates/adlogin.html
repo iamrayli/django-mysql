@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #ff758c);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .login-title {
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 2.5em;
+        }
+
+        .login-form {
+            margin-bottom: 30px;
+        }
+
+        .login-input {
+            width: calc(100% - 100px);
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .login-button {
+            width: 200px;
+            padding: 15px;
+            margin: 15px;
+            border: 2px solid #5C6BC0;
+            border-radius: 50px;
+            background-color: #5C6BC0;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .login-button:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+            background-color: #3949ab;
+        }
+
+        .login-button:active {
+            transform: translateY(-2px);
+        }
+
+        .login-button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .warning {
+            text-align: center;
+            width: calc(100% - 100px);
+            background-color: burlywood;
+            border: 1px solid burlywood;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    {% if message %}
+        <div class="warning">{{ message }}</div>
+    {% endif %}
+<div class="login-container">
+    <h1 class="login-title">管理员登录</h1>
+    <form class="login-form" action="/apps/adlogin" method="post">
+        {% csrf_token %}
+        <input type="text" class="login-input" placeholder="请输入账号" name="username" required autofocus>
+        <input type="password" class="login-input" placeholder="请输入密码" name="password" required>
+        <div class="login-button-container">
+            <button type="submit" class="login-button">登录</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

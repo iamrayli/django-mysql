@@ -1,0 +1,75 @@
+<!--修改url-->
+<!--
+第65行：强制下机url;
+第67行：查看空闲计算机url;
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网吧管理系统 - 管理员界面</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .admin-panel {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .admin-panel h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .admin-actions button {
+            padding: 15px 40px;
+            margin: 5px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .admin-actions button:hover {
+            background-color: #0056b3;
+        }
+        .admin-actions button:active {
+            background-color: #00408d;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-panel">
+        <h2>网吧管理系统 - 管理员控制台</h2>
+        <div class="admin-actions">
+            <!-- 强制下机按钮 -->
+            <button onclick="location.href='/apps/forceSD';">强制下机</button>
+            <!-- 查看空闲电脑按钮 -->
+            <button onclick="location.href='/apps/checkspare';">查看空闲的电脑</button>
+        </div>
+    </div>
+    <div class="footer">
+        版权所有 © 2024 网吧管理系统
+    </div>
+
+</body>
+</html>

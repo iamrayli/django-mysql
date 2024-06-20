@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到文益阳的网吧</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #ff758c);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 120px; /* 进一步增加内边距 */
+            border-radius: 15px; /* 增加边框圆角 */
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3); /* 增加阴影深度 */
+            max-width: 600px; /* 进一步增加最大宽度 */
+            width: 100%;
+        }
+
+        .login-title {
+            color: #333;
+            margin-bottom: 60px; /* 进一步增加标题和按钮之间的间距 */
+            font-weight: 600;
+            font-size: 3em; /* 进一步增加标题字体大小 */
+        }
+
+        .login-button {
+            width: 200px; /* 进一步增加按钮宽度 */
+            padding: 20px; /* 进一步增加按钮内边距 */
+            margin: 15px; /* 调整按钮外边距 */
+            border: 2px solid #5C6BC0; /* 增加边框 */
+            border-radius: 50px; /* 增加边框圆角 */
+            background-color: #5C6BC0;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease; /* 增加阴影的过渡效果 */
+            font-weight: 600;
+            font-size: 1.2em; /* 进一步增加按钮字体大小 */
+        }
+
+        .login-button:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4); /* 增加悬停时的阴影效果 */
+            background-color: #3949ab;
+        }
+
+        .login-button:active {
+            transform: translateY(-2px);
+        }
+
+        .login-button-container {
+            margin-top: 50px; /* 进一步增加按钮容器的上边距 */
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert('{{ message.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+<div class="login-container">
+    <h1 class="login-title">网吧管理系统</h1>
+    <div class="login-button-container">
+        <button class="login-button" onclick="location.href='/apps/login'">用户登录</button>
+        <button class="login-button" onclick="location.href='/apps/adlogin'">管理员登录</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!--修改url-->
+<!--
+第114行：充值url;
+第118行：上机url;
+第122行：下机url;
+第126行：修改密码url;
+-->
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网吧首页</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .banner {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .services {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .login-button {
+            width: 400px;
+            padding: 15px;
+            margin: 15px;
+            border: 2px solid #5C6BC0;
+            border-radius: 50px;
+            background-color: #5C6BC0;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .login-button:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+            background-color: #3949ab;
+        }
+
+        .login-button:active {
+            transform: translateY(-2px);
+        }
+
+        .login-button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert('{{ message.message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+<div class="navbar">
+
+</div>
+
+<div class="container">
+    <div class="banner">
+        <h1>欢迎来到文益阳的网吧</h1>
+        <p>为您提供高速、舒适的上网体验。</p>
+    </div>
+    <div class="services">
+        <button class="login-button" onclick="location.href='/apps/recharge';">
+            <h2>充值</h2>
+            <p>极速充值，瞬间到账</p>
+        </button>
+        <button class="login-button" onclick="location.href='/apps/shangji';">
+            <h2>上机</h2>
+            <p>千兆宽带，畅享网络。</p>
+        </button>
+        <button class="login-button" onclick="location.href='/apps/outLogin';">
+            <h2>下机</h2>
+            <p>玩得开心，欢迎再来。</p>
+        </button>
+        <button class="login-button" onclick="location.href='/apps/changepwd';">
+            <h2>修改密码</h2>
+
+        </button>
+    </div>
+</div>
+
+<div class="footer">
+    <p>版权所有 &copy; 2024 阳阳网吧</p>
+</div>
+</body>
+</html>
